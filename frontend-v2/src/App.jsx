@@ -15,7 +15,8 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 
-const API_BASE = "http://127.0.0.1:8000";
+// Dynamic API Base URL: Uses environment variable if available, else fallbacks to localhost
+const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 function App() {
   const [report, setReport] = useState(null);

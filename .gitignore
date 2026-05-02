@@ -10,6 +10,11 @@ ENV/
 # Environment Variables
 .env
 
+# Node.js / Frontend
+node_modules/
+dist/
+.eslintcache
+
 # Data & Models (Optional, but usually ignored if large)
 stacking_model.pkl
 
