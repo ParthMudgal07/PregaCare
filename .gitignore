@@ -15,9 +15,6 @@ node_modules/
 dist/
 .eslintcache
 
-# Data & Models (Optional, but usually ignored if large)
-stacking_model.pkl
-
 # IDEs
 .vscode/
 .idea/

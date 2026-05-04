@@ -3,6 +3,9 @@ from pydantic import BaseModel
 from typing import List, Optional
 from final_assessment import PregaCareFinalAssessment
 from pregacare_engine import PregaCareAIEngine
+from patient_report import generate_patient_pdf
+import os
+from fastapi.responses import FileResponse
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -11,7 +14,11 @@ app = FastAPI(title="PregaCare REST API")
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In production, replace with specific origins
+    allow_origins=[
+        "http://localhost:5173", 
+        "http://127.0.0.1:5173",
+        # "https://pregacare-ai.vercel.app" # Add your production domain here
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -44,6 +51,10 @@ class ChatRequest(BaseModel):
     assessment_report: dict
     chat_history: Optional[List[ChatMessage]] = []
 
+class ExportRequest(BaseModel):
+    report: dict
+    vitals: PatientVitals
+
 # --- Endpoints ---
 
 @app.get("/health")
@@ -72,6 +83,20 @@ def chat_with_ai(data: ChatRequest):
         return {"response": response}
     except Exception as e:
         print(f"CHAT ERROR: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/export-pdf")
+def export_pdf(data: ExportRequest):
+    try:
+        temp_filename = "PregaCare_Report.pdf"
+        generate_patient_pdf(data.report, data.vitals.model_dump(), temp_filename)
+        return FileResponse(
+            temp_filename, 
+            media_type='application/pdf', 
+            filename=temp_filename
+        )
+    except Exception as e:
+        print(f"PDF ERROR: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
