@@ -15,4 +15,7 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://parthmudgal28:$HF_TOKEN@huggingface.co/spaces/parthmudgal28/PregaCare-AI main
+        run: |
+          git config --global user.email "parth@example.com"
+          git config --global user.name "Parth Mudgal"
+          git push --force https://parthmudgal28:$HF_TOKEN@huggingface.co/spaces/parthmudgal28/PregaCare-AI main
