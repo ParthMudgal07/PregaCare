@@ -15,7 +15,8 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+const VITE_API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+const API_BASE = VITE_API_URL.endsWith('/') ? VITE_API_URL.slice(0, -1) : VITE_API_URL;
 
 const DashboardPage = ({ report, vitals }) => {
   const [chatHistory, setChatHistory] = useState([]);
