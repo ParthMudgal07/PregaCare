@@ -15,8 +15,7 @@ app = FastAPI(title="PregaCare REST API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173", 
-        "http://127.0.0.1:5173",
+        "*"
         # "https://pregacare-ai.vercel.app" # Add your production domain here
     ],
     allow_credentials=True,
