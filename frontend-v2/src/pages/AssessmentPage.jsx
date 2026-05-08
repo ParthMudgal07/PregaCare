@@ -5,7 +5,8 @@ import axios from 'axios';
 import { Activity, MapPin, ChevronRight, Search } from 'lucide-react';
 import locationData from '../assets/location_data.json';
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+const VITE_API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+const API_BASE = VITE_API_URL.endsWith('/') ? VITE_API_URL.slice(0, -1) : VITE_API_URL;
 
 const AssessmentPage = ({ setReport, setVitals }) => {
   const [loading, setLoading] = useState(false);
@@ -179,3 +180,4 @@ const AssessmentPage = ({ setReport, setVitals }) => {
 };
 
 export default AssessmentPage;
+
