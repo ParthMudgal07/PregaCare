@@ -2,6 +2,9 @@
 
 PregaCare AI is a comprehensive maternal health support system designed to provide personalized clinical risk assessment and AI-driven guidance for expectant mothers in India.
 
+## Live Demo: https://pregacare01.vercel.app/
+
+
 ## 🚀 Key Features
 
 - **Personalized Risk Assessment**: Uses a **Stacking Ensemble ML Model** (XGBoost, Random Forest, Logistic Regression) to predict clinical risk from vitals.
@@ -29,30 +32,6 @@ PregaCare/
 └── frontend-v2/             # React Dashboard
 ```
 
-## ⚡ Quick Start
-
-### 1. Clone & Setup Backend
-```bash
-# Clone the repository
-git clone https://github.com/ParthMudgal07/PregaCare.git
-cd PregaCare
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure Environment
-echo "OPENROUTER_API_KEY=your_key_here" > .env
-
-# Run API
-python api.py
-```
-
-### 2. Setup Frontend
-```bash
-cd frontend-v2
-npm install
-npm run dev
-```
 
 ## 🛡️ Privacy & Security
 - Patient data is processed locally/server-side and not used for training.
